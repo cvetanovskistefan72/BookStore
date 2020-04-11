@@ -1,0 +1,40 @@
+.btn:hover{
+    opacity: 0.8;
+
+}
+.btn {
+
+    color: white!important;
+}
+#ul-div{
+    background-color: transparent;
+    border: none;
+}
+.collection-item:hover{
+    cursor: pointer;
+    background-color: #f5f5f5!important;
+
+}
+.material-tooltip > .backdrop{
+    background-color: purple!important;
+}
+#form-div{
+padding: 30px;
+
+}
+#div-art{
+
+    border-radius: 5px;
+
+}
+#art{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+}
+.nav-menu:hover{
+
+    color: white;
+}
+
+

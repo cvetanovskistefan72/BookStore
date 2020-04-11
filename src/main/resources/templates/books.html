@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <!-- Compiled and minified JavaScript -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Import materialize.css-->
+
+
+</head>
+<body class="white">
+
+<div  >
+    <nav>
+        <div class="nav-wrapper black z-depth-3">
+           <div class="container">
+               <a href="#" class="brand-logo left"><i>BooksStore</i></a>
+               <ul id="nav-mobile" class="right ">
+                   <li><a class="nav-menu"th:href="@{/books}">Books</a></li>
+                   <li><a class="btn blue" th:href="@{/booksForm}">Add book <i class="material-icons right">add</i></a></li>
+
+               </ul>
+           </div>
+        </div>
+    </nav>
+    <div class="container"   >
+         <br><br>
+        <div>
+            <h3 style="font-weight: bold">List of Books</h3>
+        </div>
+        <hr>
+        <br>
+        <div id="ul-div" class="collection"   >
+            <li style="margin: 10px;list-style: none"  class="collection-item tooltipped avatar  grey lighten-5 z-depth-1"
+                th:each="aBook : ${books}" th:object="${books}" data-position="top" data-delay="0"   th:data-tooltip="${aBook.bookName+': '+aBook.samples+' samples left'}">
+                <img th:src="@{${aBook.imgFileName}}" alt="" class="circle" />
+                <span style="font-weight: bold;font-size: 1.2rem" class="title green-text" th:text="${aBook.bookName}"></span>
+                <p style="font-weight: bold"   th:text="${aBook.category.categoryName}"> <br>
+                    <p th:text="${aBook.category.categoryDetails}"></p>
+                </p>
+               <div class=" secondary-content">
+                   <a th:href="@{/books/edit/{id}(id=${aBook.id})}"
+                      class="btn green z-depth-0"><i class="material-icons">edit</i></a>
+                   <a  th:href="@{/books/delete/{id}(id=${aBook.id})}"
+                      onclick="if(!(confirm('Are you sure?'))) return false"
+                       class="btn red  z-depth-0"><i class="material-icons">delete</i></a>
+               </div>
+            </li>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+    });
+</script>
+</html>

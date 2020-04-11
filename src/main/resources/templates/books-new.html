@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <!-- Compiled and minified JavaScript -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div  >
+    <nav>
+        <div class="nav-wrapper black z-depth-3">
+            <div class="container">
+                <a href="#" class="brand-logo left"><i>BooksStore</i></a>
+                <ul id="nav-mobile" class="right">
+                    <li><a style="text-decoration: none" class="nav-menu" th:href="@{/books}">Books</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="width: 50%"  class="container  ">
+        <br>
+        <br>
+        <div id="div-art"  class="z-depth-1">
+            <div style="padding:0px">
+                <h4 id="art"style="padding: 20px" class="blue white-text "> Add Book!</h4>
+            </div>
+             <div id="form-div">
+                 <form action="" th:action="@{/books/save}" th:object="${book}" enctype="multipart/form-data"  method="POST">
+
+                     <div class="input-field">
+                         <label for="name">Name</label>
+                         <input id="name" th:field="*{bookName}"  type="text"  >
+                         <p th:if="${#fields.hasErrors('bookName')}" th:errors="*{bookName}"></p>
+
+                     </div>
+                     <div class="input-field">
+                         <label for="samples">Samples</label>
+                         <input  id="samples"th:field="*{samples}"  type="number"  >
+                         <p th:if="${#fields.hasErrors('samples')}" th:errors="*{samples}"></p>
+                     </div>
+                     <div class="form-group">
+
+                         <div class="row">
+                             <div class="col">
+                                 <select th:field="*{categoryInt}"      class="form-control" id="exampleFormControlSelect1">
+
+                                     <option th:each=" aCategory : ${categories}" th:text="${aCategory.categoryName}"
+                                             th:value="${aCategory.id}"  ></option>
+
+                                 </select>
+                                 <p th:if="${#fields.hasErrors('categoryInt')}" th:errors="*{categoryInt}"></p>
+                             </div>
+                             <div class="col" >
+
+                                 <input  th:field="*{img}"class="form-group" id="upload-file"type="file">
+                             </div>
+                         </div>
+
+                     </div>
+
+
+                    <br>
+                     <div class="input-field" >
+
+                             <button class="btn blue white-text right z-depth-0" type="submit"  >Save</button>
+
+                     </div>
+                     <br>
+                     <br>
+                     <hr>
+                     <div>
+                         <a class="blue-text" th:href="@{/books}">Back to List of books!</a>
+                     </div>
+                 </form>
+             </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<br><br>
+<br><br>
+</body>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+</html>
